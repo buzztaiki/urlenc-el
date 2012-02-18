@@ -1,4 +1,4 @@
-;;; urlenc.el --- URL encode/decode utility
+;;; urlenc.el --- URL encoding/decoding utility for Emacs.
 
 ;; Copyright (C) 2012  Taiki SUGAWARA
 
