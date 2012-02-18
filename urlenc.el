@@ -31,16 +31,13 @@
   :group 'urlenc
   :type 'coding-system)
 
-(defun urlenc:decode-string (url &optional cs)
+(defun urlenc:decode-string (url cs)
   "Decode URL with coding system CS."
-  (decode-coding-string
-   (url-unhex-string (string-to-unibyte url))
-   (or cs urlenc:default-coding-system)))
+  (decode-coding-string (url-unhex-string (string-to-unibyte url)) cs))
 
-(defun urlenc:encode-string (url &optional cs)
+(defun urlenc:encode-string (url cs)
   "Encode URL with coding system CS."
-  (url-hexify-string
-   (encode-coding-string url (or cs urlenc:default-coding-system))))
+  (url-hexify-string (encode-coding-string url cs)))
 
 (defun urlenc:replace-region (start end func cs)
   (let ((url (buffer-substring start end))
@@ -62,22 +59,22 @@
   (list (region-beginning) (region-end)
 	(urlenc:read-cs)))
 
-(defun urlenc:decode-region (start end &optional cs)
+(defun urlenc:decode-region (start end cs)
   "Decode region between START and CS as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:decode-string cs))
 
-(defun urlenc:encode-region (start end &optional cs)
+(defun urlenc:encode-region (start end cs)
   "Encode region between START and CS as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:encode-string cs))
 
-(defun urlenc:decode-insert (url &optional cs)
+(defun urlenc:decode-insert (url cs)
   "Insert decoded URL into current position with coding system CS."
   (interactive (urlenc:insert-read))
   (insert (urlenc:decode-string url cs)))
 
-(defun urlenc:encode-insert (url &optional cs)
+(defun urlenc:encode-insert (url cs)
   "Insert encoded URL into current position with coding system CS."
   (interactive (urlenc:insert-read))
     (insert (urlenc:encode-string url cs)))
