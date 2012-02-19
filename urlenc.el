@@ -61,12 +61,12 @@
 	(urlenc:read-cs)))
 
 (defun urlenc:decode-region (start end cs)
-  "Decode region between START and CS as url with coding system CS."
+  "Decode region between START and END as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:decode-string cs))
 
 (defun urlenc:encode-region (start end cs)
-  "Encode region between START and CS as url with coding system CS."
+  "Encode region between START and END as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:encode-string cs))
 
