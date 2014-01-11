@@ -60,21 +60,25 @@
   (list (region-beginning) (region-end)
 	(urlenc:read-cs)))
 
+;;;###autoload
 (defun urlenc:decode-region (start end cs)
   "Decode region between START and END as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:decode-string cs))
 
+;;;###autoload
 (defun urlenc:encode-region (start end cs)
   "Encode region between START and END as url with coding system CS."
   (interactive (urlenc:region-read))
   (urlenc:replace-region start end 'urlenc:encode-string cs))
 
+;;;###autoload
 (defun urlenc:decode-insert (url cs)
   "Insert decoded URL into current position with coding system CS."
   (interactive (urlenc:insert-read))
   (insert (urlenc:decode-string url cs)))
 
+;;;###autoload
 (defun urlenc:encode-insert (url cs)
   "Insert encoded URL into current position with coding system CS."
   (interactive (urlenc:insert-read))
